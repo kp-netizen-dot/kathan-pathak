@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathan Pathak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0D12;
+    --surface:#12161D;
+    --surface-2:#1A1F28;
+    --text:#ECEFF3;
+    --text-dim:#8B94A3;
+    --rule:#232934;
+    --gold:#D4A24C;
+    --gold-dim:#8A6E3A;
+    --mint:#4FD1AE;
+    --max-w:1080px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 28px;}
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(10,13,18,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    max-width:var(--max-w);margin:0 auto;padding:18px 28px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .nav-name{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:17px;letter-spacing:-0.01em;
+  }
+  .nav-links{display:flex;gap:32px;font-size:14px;color:var(--text-dim);}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;}
+
+  @media (max-width:720px){
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--surface);flex-direction:column;gap:0;
+      border-bottom:1px solid var(--rule);
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:16px 28px;border-top:1px solid var(--rule);}
+    .nav-toggle{display:block;}
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:160px 0 64px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--gold);
+    letter-spacing:0.08em;text-transform:uppercase;
+    margin-bottom:20px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{
+    content:'';width:7px;height:7px;border-radius:50%;
+    background:var(--mint);
+    box-shadow:0 0 0 3px rgba(79,209,174,0.15);
+  }
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(40px,7vw,76px);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    margin-bottom:22px;
+  }
+  .hero-thesis{
+    font-size:clamp(17px,2vw,20px);
+    color:var(--text-dim);
+    max-width:560px;
+    font-weight:400;
+  }
+  .hero-thesis strong{color:var(--text);font-weight:500;}
+
+  /* ===== TICKER ===== */
+  .ticker-band{
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    background:var(--surface);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:16px 0;
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation:scroll-left 38s linear infinite;
+  }
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .ticker-item{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13.5px;
+    color:var(--text-dim);
+    padding:0 28px;
+    border-right:1px solid var(--rule);
+    display:flex;align-items:center;gap:10px;
+  }
+  .ticker-item .val{color:var(--gold);font-weight:500;}
+  .ticker-item .up{color:var(--mint);}
+
+  @media (prefers-reduced-motion:reduce){
+    .ticker-track{animation:none;}
+  }
+
+  /* ===== SECTIONS ===== */
+  section{padding:88px 0;border-bottom:1px solid var(--rule);}
+  .section-head{
+    display:flex;align-items:baseline;gap:16px;
+    margin-bottom:48px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--gold-dim);
+  }
+  h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:clamp(26px,3.4vw,34px);
+    letter-spacing:-0.01em;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:56px;
+  }
+  @media (max-width:720px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{color:var(--text-dim);margin-bottom:16px;font-size:16px;}
+  .about-text p strong{color:var(--text);font-weight:500;}
+  .fact-list{
+    border-left:1px solid var(--rule);
+    padding-left:24px;
+  }
+  .fact{margin-bottom:20px;}
+  .fact-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--text-dim);
+    text-transform:uppercase;letter-spacing:0.06em;
+    margin-bottom:4px;
+  }
+  .fact-value{font-size:15px;}
+
+  /* ===== TIMELINE ===== */
+  .timeline{position:relative;}
+  .tl-item{
+    display:grid;grid-template-columns:140px 1fr;gap:28px;
+    padding-bottom:40px;position:relative;
+  }
+  .tl-item:not(:last-child){
+    border-left:1px solid var(--rule);
+    margin-left:5px;padding-left:36px;
+  }
+  .tl-item:last-child{margin-left:6px;padding-left:37px;}
+  .tl-item::before{
+    content:'';position:absolute;left:-5px;top:4px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--gold);
+  }
+  .tl-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--text-dim);
+    padding-top:2px;
+  }
+  .tl-role{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;font-size:17px;margin-bottom:4px;
+  }
+  .tl-org{color:var(--gold);font-size:14px;margin-bottom:10px;font-weight:500;}
+  .tl-desc{color:var(--text-dim);font-size:14.5px;max-width:560px;}
+  .pill{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;text-transform:uppercase;letter-spacing:0.05em;
+    border:1px solid var(--gold-dim);color:var(--gold);
+    padding:2px 8px;border-radius:20px;margin-left:8px;
+    vertical-align:middle;
+  }
+
+  @media (max-width:560px){
+    .tl-item{grid-template-columns:1fr;gap:4px;}
+    .tl-item, .tl-item:not(:last-child){margin-left:5px;padding-left:24px;}
+  }
+
+  /* ===== BUILD CARD ===== */
+  .build-card{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:14px;
+    padding:36px;
+  }
+  .build-head{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    gap:20px;margin-bottom:16px;flex-wrap:wrap;
+  }
+  .build-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;}
+  .status-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    color:var(--mint);border:1px solid rgba(79,209,174,0.35);
+    padding:4px 10px;border-radius:20px;white-space:nowrap;
+  }
+  .build-desc{color:var(--text-dim);margin-bottom:24px;font-size:15px;max-width:620px;}
+  .module-chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    background:var(--surface-2);color:var(--text-dim);
+    padding:6px 12px;border-radius:8px;border:1px solid var(--rule);
+  }
+
+  /* ===== AWARDS ===== */
+  .award-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+  }
+  @media (max-width:720px){.award-grid{grid-template-columns:1fr;}}
+  .award-card{
+    border:1px solid var(--rule);border-radius:12px;padding:24px;
+    background:var(--surface);
+  }
+  .award-metric{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:26px;color:var(--gold);margin-bottom:6px;
+  }
+  .award-name{font-size:14px;color:var(--text);margin-bottom:4px;font-weight:500;}
+  .award-sub{font-size:13px;color:var(--text-dim);}
+
+  /* ===== EDUCATION ===== */
+  .edu-block{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:28px;}
+  .edu-school{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;}
+  .edu-meta{color:var(--text-dim);font-size:14px;margin-top:4px;}
+  .edu-gpa{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:15px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:72px 0 56px;border-bottom:none;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .footer-cta h2{margin-bottom:14px;}
+  .footer-cta p{color:var(--text-dim);max-width:420px;font-size:15px;}
+  .contact-btn{
+    font-family:'IBM Plex Mono',monospace;font-size:14px;
+    background:var(--gold);color:var(--bg);font-weight:500;
+    padding:14px 24px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;
+    transition:opacity .2s;
+  }
+  .contact-btn:hover{opacity:0.85;}
+  .footer-meta{color:var(--text-dim);font-size:13px;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-name">KATHAN PATHAK</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#builds">Builds</a>
+      <a href="#awards">Recognition</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="eyebrow">Herndon, VA · Class of 2027</div>
+  <h1>Kathan Pathak</h1>
+  <p class="hero-thesis">Building at the intersection of <strong>quantitative finance</strong>, <strong>research</strong>, and <strong>entrepreneurship</strong> — managing client portfolios, studying factor investing at Harvard, and building software for college athletics.</p>
+</header>
+
+<div class="ticker-band">
+  <div class="ticker-track" id="tickerTrack">
+    <!-- duplicated in JS for seamless loop -->
+  </div>
+</div>
+
+<main>
+  <section id="about" class="wrap reveal">
+    <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a junior at <strong>BASIS Independent McLean</strong>, where I split my time between client portfolios, research, and building. I currently work as a Financial Analyst Intern at <strong>Eagle Strategies</strong>, where I build portfolio decks and models for clients managing a combined $35M+ in assets.</p>
+        <p>Outside of finance, I'm Vice President of Student Government, captain of the varsity basketball team, and founder of <strong>AthleteIQ Pro</strong>, a budget and NIL management platform built for college athletic departments.</p>
+        <p>Long term, I'm working toward running a systematic, factor-driven investment fund. Everything I'm doing right now — the research, the internships, the product — is in service of understanding markets well enough to eventually trade them myself.</p>
+      </div>
+      <div class="fact-list">
+        <div class="fact">
+          <div class="fact-label">Currently</div>
+          <div class="fact-value">Financial Analyst Intern, Eagle Strategies</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Researching</div>
+          <div class="fact-value">Factor investing, Harvard finance faculty</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Building</div>
+          <div class="fact-value">AthleteIQ Pro — budget & NIL platform</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Aiming for</div>
+          <div class="fact-value">Quant research / systematic trading</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap reveal">
+    <div class="section-head"><span class="section-num">02</span><h2>Experience</h2></div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-date">JUN 2025 — PRESENT</div>
+        <div>
+          <div class="tl-role">Financial Analyst Intern</div>
+          <div class="tl-org">Eagle Strategies LLC</div>
+          <div class="tl-desc">Built 10+ portfolio analysis decks and financial models for 14 clients managing a combined $35M+ in assets. Synthesized market and competitor data into actionable investment recommendations.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2026</div>
+        <div>
+          <div class="tl-role">Research Assistant, Factor Investing</div>
+          <div class="tl-org">Harvard University</div>
+          <div class="tl-desc">Selected as 1 of 8 accepted from a pool of 256 applicants, after three rounds of interviews, to conduct research on systematic factor investing and macroeconomics with Harvard finance faculty.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">JUN 22 — JUL 24, 2026</div>
+        <div>
+          <div class="tl-role">Wealth Management Intern <span class="pill">Incoming</span></div>
+          <div class="tl-org">AXIS Bank</div>
+          <div class="tl-desc">Incoming internship at India's largest bank, working in wealth management.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">JUN 14 — JUL 26, 2026</div>
+        <div>
+          <div class="tl-role">Wealth Management Intern <span class="pill">Incoming</span></div>
+          <div class="tl-org">BFS Consulting</div>
+          <div class="tl-desc">Building portfolio analysis decks, researching stocks and companies across sectors, and developing financial plans for clients.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">JUN 2023 — JUN 2024</div>
+        <div>
+          <div class="tl-role">Data Analyst Intern</div>
+          <div class="tl-org">TechSur Solutions</div>
+          <div class="tl-desc">Conducted competitive analysis on 300+ firms pursuing U.S. Department of Defense contracts, delivering analytics that strengthened the company's government contract pursuit strategy.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="builds" class="wrap reveal">
+    <div class="section-head"><span class="section-num">03</span><h2>Builds</h2></div>
+    <div class="build-card">
+      <div class="build-head">
+        <div class="build-title">AthleteIQ Pro</div>
+        <div class="status-tag">● PROTOTYPE — SOLO BUILT</div>
+      </div>
+      <div class="build-desc">A budget and NIL (Name, Image, Likeness) management platform for college athletic departments — covering budget tracking and forecasting, NIL compensation modeling, recruiting and transfer portal tracking, scenario planning, and compliance monitoring, with a full roster database across sports and conferences.</div>
+      <div class="module-chips">
+        <span class="chip">Budget</span>
+        <span class="chip">Budget Forecast</span>
+        <span class="chip">NIL Calculator</span>
+        <span class="chip">Recruiting</span>
+        <span class="chip">Transfer Portal</span>
+        <span class="chip">Scenarios</span>
+        <span class="chip">Compliance</span>
+        <span class="chip">Rosters</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="awards" class="wrap reveal">
+    <div class="section-head"><span class="section-num">04</span><h2>Recognition</h2></div>
+    <div class="award-grid">
+      <div class="award-card">
+        <div class="award-metric">Top 2.3%</div>
+        <div class="award-name">Blue Ocean Entrepreneurship Competition</div>
+        <div class="award-sub">Ranked globally</div>
+      </div>
+      <div class="award-card">
+        <div class="award-metric">Top 20%</div>
+        <div class="award-name">Conrad Innovator Program</div>
+        <div class="award-sub">Of 5,000+ students across 82 countries</div>
+      </div>
+      <div class="award-card">
+        <div class="award-metric">1 of 8</div>
+        <div class="award-name">Harvard Research Position</div>
+        <div class="award-sub">Selected from 256 applicants</div>
+      </div>
+      <div class="award-card">
+        <div class="award-metric">1440</div>
+        <div class="award-name">SAT Score</div>
+        <div class="award-sub">98th+ percentile</div>
+      </div>
+      <div class="award-card">
+        <div class="award-metric">Invited</div>
+        <div class="award-name">18th Conference of States Parties to the UN CRPD</div>
+        <div class="award-sub">United Nations</div>
+      </div>
+      <div class="award-card">
+        <div class="award-metric">Distinction</div>
+        <div class="award-name">AP Scholar with Distinction</div>
+        <div class="award-sub">5+ AP exams scored 3 or higher</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="wrap reveal">
+    <div class="section-head"><span class="section-num">05</span><h2>Education</h2></div>
+    <div class="edu-block">
+      <div>
+        <div class="edu-school">BASIS Independent McLean</div>
+        <div class="edu-meta">Aug 2023 — Present · Class of 2027</div>
+      </div>
+      <div class="edu-gpa">4.6 GPA (weighted)</div>
+    </div>
+    <div class="tag-row">
+      <span class="chip">AP Macroeconomics — 5</span>
+      <span class="chip">AP Calculus BC — 4</span>
+      <span class="chip">AP Microeconomics — 4</span>
+      <span class="chip">AP Statistics</span>
+    </div>
+    <div class="tag-row">
+      <span class="chip">Student Gov't VP</span>
+      <span class="chip">Varsity Basketball — Captain</span>
+      <span class="chip">Debate Team</span>
+      <span class="chip">Model UN</span>
+      <span class="chip">Spanish Honor Society</span>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap reveal" id="contact">
+  <div class="footer-inner">
+    <div class="footer-cta">
+      <h2>Let's talk.</h2>
+      <p>Open to conversations about quant finance, research, or AthleteIQ Pro.</p>
+    </div>
+    <a class="contact-btn" href="mailto:kathanpathak2008@gmail.com">kathanpathak2008@gmail.com →</a>
+  </div>
+</footer>
+
+<script>
+  // mobile nav
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // ticker — build content then duplicate for seamless loop
+  var stats = [
+    {label:'SAT', val:'1440', sub:'98th %ile'},
+    {label:'AUM MANAGED', val:'$35M+', sub:''},
+    {label:'HARVARD RESEARCH', val:'1 / 8', sub:'of 256 applicants'},
+    {label:'BLUE OCEAN', val:'TOP 2.3%', sub:'global'},
+    {label:'CONRAD INNOVATOR', val:'TOP 20%', sub:'82 countries'},
+    {label:'GPA', val:'4.6', sub:'weighted'},
+    {label:'AP SCHOLAR', val:'DISTINCTION', sub:''},
+  ];
+  var track = document.getElementById('tickerTrack');
+  function buildSet(){
+    return stats.map(function(s){
+      return '<div class="ticker-item"><span>'+s.label+'</span><span class="val">'+s.val+'</span>'+(s.sub ? '<span class="up">'+s.sub+'</span>' : '')+'</div>';
+    }).join('');
+  }
+  track.innerHTML = buildSet() + buildSet();
+
+  // scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); }
+    });
+  }, {threshold:0.12});
+  els.forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>
